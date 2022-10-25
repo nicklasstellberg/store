@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Productlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Update category</h1>
+	<div>
+		<form th:object="${category}" th:action="@{/savecategory}" action="#" method="post">
+			<input type="hidden" id="categoryid" th:field="*{categoryid}" />
+		  	<label for="name">Namer</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Update"></input>
+		</form>
+	</div>
+</body>
+</html>

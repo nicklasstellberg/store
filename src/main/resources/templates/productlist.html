@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Productlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+</head>
+<body>
+	<div class="col-md-4">
+		<h1>Products</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+    <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Description</th>
+		    <th>Price</th>
+		    <th>Category</th>
+		   	<th></th> 
+		   	<th></th> 
+		</tr>  
+    	<tr th:each = "product : ${products}">
+    		<td th:text="${product.name} "></td>
+    		<td th:text="${product.description}"></td>
+    		<td th:text="${product.price}"></td>
+    		<td th:text="${product.category.name}">Category</td>
+ 			<td  sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
+ 			<td  sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-danger">Edit</a></td>
+    	</tr>
+     </table>
+	 <a   sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add Product</a>
+</body>
+</html>

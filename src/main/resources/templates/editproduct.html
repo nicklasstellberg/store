@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Productlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Update product</h1>
+	<div>
+		<form th:object="${product}" th:action="@{/save}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{id}" />
+		  	<label for="name">Namer</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="description">description</label>
+			<input type="text" id="description" th:field="*{description}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="price">Price</label>
+			<input type="text" th:field="*{price}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="categorylist">Category</label>
+			 <select id="categorylist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Update"></input>
+		</form>
+	</div>
+</body>
+</html>
