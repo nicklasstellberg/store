@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,11 +16,16 @@ public class Product {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@Size(min=5, max=30)
 	private String name;
+	
+	@Size(min=5, max=255)
 	private String description;
+	
 	private double price;
 	
-	@ManyToOne
+	@ManyToOne(optional = true)
 	@JsonIgnoreProperties ("products") 
     @JoinColumn(name = "categoryid") 
     private Category category;

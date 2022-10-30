@@ -3,9 +3,12 @@ package com.example.store.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +36,10 @@ public class CategoryController {
     
     
     @RequestMapping(value = "/savecategory", method = RequestMethod.POST)
-    public String save(Category category){
+    public String save(@Valid Category category, BindingResult result){
+    	if (result.hasErrors()) {
+            return "addcategory";
+        }
         repository.save(category);
         return "redirect:categorylist";
     }

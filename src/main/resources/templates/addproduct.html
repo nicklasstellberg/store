@@ -8,20 +8,31 @@
 	<h1>Add product</h1>
 	<div>
 		<form th:object="${product}" th:action="@{save}" action="#" method="post">
-		  	<label for="name">Name</label>
-			<input type="text" id="fname" th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="description">Description</label>
-			<input type="text" id="lname" th:field="*{description}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="price">Price</label>
-			<input type="text" th:field="*{price}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="categorylist">Category</label>
-			 <select id="categorylist" th:field="*{category}" class="form-control">
-       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
-    		</select>
-			<div style="clear: both; display: block; height: 10px;"></div>
+			<table>
+				<tr>
+				  	<td><label for="name">Name</label>
+					<input type="text" id="name" th:field="*{name}" /></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</td>
+					
+				</tr>
+				<tr>
+				  	<td><label for="description">Description</label>
+					<input type="text" id="descrpition" th:field="*{description}" /></td>
+					<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
+					
+				</tr>
+				<tr>
+				  	<td><label for="price">Price</label>
+					<input type="text" th:field="*{price}" /></td>
+					
+				</tr>
+				<tr>
+					<td><label for="categorylist">Category</label>
+					 <select id="categorylist" th:field="*{category}" class="form-control">
+		       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+		    		</select></td>
+				</tr>
+			</table>
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>
