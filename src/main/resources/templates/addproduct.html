@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Productlist</title>
+    <title>Add product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
 </head>
 <body>
 	<h1>Add product</h1>
@@ -35,6 +36,7 @@
 			</table>
 			<input type="submit" value="Save"></input>
 		</form>
+		<a href="/productlist" class="btn btn-success">Back</a>
 	</div>
 </body>
 </html>

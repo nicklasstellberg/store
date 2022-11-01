@@ -36,7 +36,9 @@
     	</tr>
      </table>
 	 <a   sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add Product</a>
-	 <a href="/categorylist" class="btn btn-success">Categorylist</a>
-	 <a href="/orderitemlist" class="btn btn-success">Orderitemlist</a>
+	 <a href="/addorderitem" class="btn btn-success">Order</a>
+	 <a href="/categorylist" class="btn btn-success">Categories</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/orderitemlist" class="btn btn-success">All orders</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
 </body>
 </html>

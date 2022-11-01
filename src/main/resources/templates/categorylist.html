@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Categorylist</title>
+	<title>Categories</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
@@ -32,7 +32,8 @@
 		</tr>
 	</table>
 	 <a href="/addcategory" class="btn btn-success">Add Category</a>
-	 <a href="/productlist" class="btn btn-success">Productlist</a>
-	 <a href="/orderitemlist" class="btn btn-success">Orderitemlist</a>    
+	 <a href="/productlist" class="btn btn-success">Products</a>
+	 <a href="/orderitemlist" class="btn btn-success">Orders</a> 
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
 </body>
 </html>

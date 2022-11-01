@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>All orders</title>
+    <title>Productlist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
 </head>
 <body>
 	<div class="col-md-4">
-		<h1>All orders</h1>
+		<h1>Users</h1>
 	</div>
 	<div class="col-md-4">
 		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
@@ -19,26 +19,20 @@
 	</div>
     <table class="table table-striped">
 		<tr>
-		 	<th>Order id</th>
-		 	<th>Customer</th>
-		    <th>Product name</th>
-		    <th>Unit price</th>
-		    <th>Quantity</th>
-		    <th>Total price</th>
-		   	<th></th> 
-		   	<th></th> 
+		    <th>Id</th>
+		    <th>Username</th>
+		    <th>Role</th>
+		    <th></th>
 		</tr>  
-    	<tr th:each = "orderitem : ${orderitems}">
-    		<td th:text="${orderitem.orderItemId} ">Order id</td>
-    		<td th:text="${orderitem.user.username}">Customer</td>
-    		<td th:text="${orderitem.product.name}">Product name</td>
-    		<td th:text="${orderitem.product.price}">Unit price</td>
-    		<td th:text="${orderitem.quantity} ">Quantity</td>
-    		<td th:text="${orderitem.quantity*orderitem.product.price} ">Total price</td>
+    	<tr th:each = "user : ${users}">
+    		<td th:text="${user.id} "></td>
+    		<td th:text="${user.username}"></td>
+    		<td th:text="${user.role}"></td>
+    		<td><a th:href="@{/deleteuser/{id}(id=${user.id})}" class="btn btn-danger">Delete</a></td>
     	</tr>
      </table>
      <a href="/productlist" class="btn btn-success">Products</a>
 	 <a href="/categorylist" class="btn btn-success">Categories</a>
-	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
+	 <a href="/orderitemlist" class="btn btn-success">All orders</a>
 </body>
 </html>

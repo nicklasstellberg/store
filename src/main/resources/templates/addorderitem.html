@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add order</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+</head>
+<body>
+	<h1>Add order</h1>
+	<div>
+		<form th:object="${orderitem}" th:action="@{saveorderitem}" action="#" method="post">
+			<table>
+				<tr>
+					<td><label for="productlist">Product</label>
+					 <select id="productlist" th:field="*{product}" class="form-control">
+		       			<option th:each="product: ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+		    		</select></td>
+				</tr>
+				<tr>
+					<td><label for="categorylist">User</label>
+					 <select id="userlist" th:field="*{user}" class="form-control">
+		       			<option th:each="user: ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+		    		</select></td>
+				</tr>
+				<tr>
+				  	<td><label for="name">Quantity</label>
+					<input type="number" id="quantity" th:field="*{quantity}" min="1" max="10"/></td>
+					<td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Error</td>
+				</tr>
+			</table>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+	<a href="/productlist" class="btn btn-success">Back</a>
+</body>
+</html>

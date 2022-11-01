@@ -42,7 +42,7 @@ public class StoreApplication {
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
-			OrderItem orderItem1 = new OrderItem(2, product1);
+			OrderItem orderItem1 = new OrderItem(2, product1, user1);
 			oirepository.save(orderItem1);
 			log.info("fetch all products");
 			for (Product product : repository.findAll()) {
