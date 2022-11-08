@@ -53,6 +53,7 @@ public class ProductController {
 			model.addAttribute("categories", crepository.findAll());
             return "addproduct";
         }
+		// pitää tutkia product id ja ohjata joko lisää lomakkeele tai muokkauslomakkeelle
         repository.save(product);
         return "redirect:productlist";
     }  
@@ -69,6 +70,17 @@ public class ProductController {
     	model.addAttribute("product", repository.findById(productId));
         return "editproduct";
     }
+	
+	@RequestMapping(value = "/saveedit", method = RequestMethod.POST)
+    public String saveEdit(@Valid Product product, BindingResult result, Model model){
+		if (result.hasErrors()) {
+			model.addAttribute("categories", crepository.findAll());
+            return "editproduct";
+        }
+		// pitää tutkia product id ja ohjata joko lisää lomakkeele tai muokkauslomakkeelle
+        repository.save(product);
+        return "redirect:productlist";
+    }  
 	
 	@RequestMapping(value="/products", method = RequestMethod.GET)
     public @ResponseBody List<Product> productListRest() {	

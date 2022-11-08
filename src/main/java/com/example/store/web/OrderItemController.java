@@ -1,5 +1,7 @@
 package com.example.store.web;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,8 @@ public class OrderItemController {
 			model.addAttribute("users", urepository.findAll());
             return "addorderitem";
         }
+		Date date = new Date();
+		orderitem.setStartDay(date);
         oirepository.save(orderitem);
         return "redirect:orderitemlist";
     }  

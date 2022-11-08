@@ -1,5 +1,7 @@
 package com.example.store;
 
+import java.text.SimpleDateFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +31,7 @@ public class StoreApplication {
 	@Bean
 	public CommandLineRunner productDemo(ProductRepository repository, CategoryRepository crepository, UserRepository urepository, OrderItemRepository oirepository) {
 		return (args) -> {
+			SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 			Category category1 = new Category("Shovels");
 			crepository.save(category1);
 			Category category2 = new Category("Masks");
@@ -38,11 +41,11 @@ public class StoreApplication {
 			repository.save(product1);
 			Product product2 =(new Product("Pyromaniac Mask", "This over-the-head mask provides a seamless fit when worn with a variety of clothing or robes.", 105.14, category2));
 			repository.save(product2);
-			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
-			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", fdate.parse("01.10.2022"));
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN", fdate.parse("01.10.2022"));
 			urepository.save(user1);
 			urepository.save(user2);
-			OrderItem orderItem1 = new OrderItem(2, product1, user1);
+			OrderItem orderItem1 = new OrderItem(2, fdate.parse("01.10.2022"), product1, user1);
 			oirepository.save(orderItem1);
 			log.info("fetch all products");
 			for (Product product : repository.findAll()) {

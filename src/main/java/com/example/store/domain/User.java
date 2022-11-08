@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name="users")
 public class User {
@@ -23,14 +25,18 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDay;
+    
     public User() {
     }
-
-	public User(String username, String passwordHash, String role) {
+    
+	public User(String username, String passwordHash, String role, Date startDay) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.role = role;
+		this.startDay = startDay;
 	}
 
 	public Long getId() {
@@ -64,5 +70,14 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public Date getStartDay() {
+		return startDay;
+	}
+
+	public void setStartDay(Date startDay) {
+		this.startDay = startDay;
+	}
+	
 
 }

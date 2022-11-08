@@ -2,6 +2,9 @@ package com.example.store;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
@@ -27,8 +30,9 @@ public class UserRepositoryTest {
     }
 	
 	@Test
-    public void createNewUser() {
-    	User user = new User("Nicklas", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+    public void createNewUser() throws ParseException {
+		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
+    	User user = new User("Nicklas", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", fdate.parse("01.10.2022"));
     	repository.save(user);
     	assertThat(user.getId()).isNotNull();
     }

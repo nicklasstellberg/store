@@ -8,13 +8,15 @@
 <body>
 	<h1>Update product</h1>
 	<div>
-		<form th:object="${product}" th:action="@{/save}" action="#" method="post">
+		<form th:object="${product}" th:action="@{/saveedit}" action="#" method="post">
 			<input type="hidden" id="id" th:field="*{id}" />
 		  	<label for="name">Namer</label>
 			<input type="text" id="name" th:field="*{name}" />
+			<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</td>
 			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="description">description</label>
+		  	<label for="description">Description</label>
 			<input type="text" id="description" th:field="*{description}" />
+			<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
 			<div style="clear: both; display: block; height: 10px;"></div>
 		  	<label for="price">Price</label>
 			<input type="text" th:field="*{price}" />

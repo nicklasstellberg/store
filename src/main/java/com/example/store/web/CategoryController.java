@@ -56,6 +56,15 @@ public class CategoryController {
         return "editcategory";
     }
 	
+	@RequestMapping(value = "/saveeditcategory", method = RequestMethod.POST)
+    public String saveeditcategory(@Valid Category category, BindingResult result){
+    	if (result.hasErrors()) {
+            return "editcategory";
+        }
+        repository.save(category);
+        return "redirect:categorylist";
+    }
+	
 	@RequestMapping(value="/categories", method = RequestMethod.GET)
     public @ResponseBody List<Category> getCategoriesRest() {	
         return (List<Category>) repository.findAll();

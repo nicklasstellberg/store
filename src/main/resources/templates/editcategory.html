@@ -8,10 +8,11 @@
 <body>
 	<h1>Update category</h1>
 	<div>
-		<form th:object="${category}" th:action="@{/savecategory}" action="#" method="post">
+		<form th:object="${category}" th:action="@{/saveeditcategory}" action="#" method="post">
 			<input type="hidden" id="categoryid" th:field="*{categoryid}" />
 		  	<label for="name">Namer</label>
 			<input type="text" id="name" th:field="*{name}" />
+			<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</td>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" value="Update"></input>
 		</form>
