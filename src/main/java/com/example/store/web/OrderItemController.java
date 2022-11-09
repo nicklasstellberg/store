@@ -1,5 +1,6 @@
 package com.example.store.web;
 
+import java.security.Principal;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.store.domain.OrderItem;
 import com.example.store.domain.OrderItemRepository;
 import com.example.store.domain.ProductRepository;
+import com.example.store.domain.User;
 import com.example.store.domain.UserRepository;
 
 @Controller
@@ -42,7 +44,7 @@ public class OrderItemController {
     } 
 	
 	@RequestMapping(value = "/saveorderitem", method = RequestMethod.POST)
-    public String save(@Valid OrderItem orderitem, BindingResult result, Model model){
+    public String save(@Valid OrderItem orderitem, BindingResult result, Model model, Principal principal){
 		if (result.hasErrors()) {
 			model.addAttribute("products", repository.findAll());
 			model.addAttribute("users", urepository.findAll());
@@ -50,6 +52,9 @@ public class OrderItemController {
         }
 		Date date = new Date();
 		orderitem.setStartDay(date);
+		String username = principal.getName(); //get logged in username
+        User user = urepository.findByUsername(username);
+		orderitem.setUser(user);
         oirepository.save(orderitem);
         return "redirect:orderitemlist";
     }  
