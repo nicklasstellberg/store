@@ -27,13 +27,13 @@
 		<tr th:each="category : ${categories}">
 			<td th:text="${category.categoryid}">Author</td>
 			<td th:text="${category.name}">Title</td>
-			<td><a th:href="@{/deletecategory/{id}(id=${category.categoryid})}" class="btn btn-danger">Delete</a></td>
-			<td><a th:href="@{/editcategory/{id}(id=${category.categoryid})}" class="btn btn-danger">Edit</a></td>
+			<td><a sec:authorize="hasAuthority('ADMIN')"  th:href="@{/deletecategory/{id}(id=${category.categoryid})}" class="btn btn-danger">Delete</a></td>
+			<td><a sec:authorize="hasAuthority('ADMIN')"  th:href="@{/editcategory/{id}(id=${category.categoryid})}" class="btn btn-danger">Edit</a></td>
 		</tr>
 	</table>
-	 <a href="/addcategory" class="btn btn-success">Add Category</a>
-	 <a href="/productlist" class="btn btn-success">Products</a>
-	 <a href="/orderitemlist" class="btn btn-success">Orders</a> 
-	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
+	 <a sec:authorize="hasAuthority('ADMIN')"  href="/addcategory" class="btn btn-success">Add Category</a>
+	 <a href="/productlist" class="btn btn-primary">Products</a>
+	 <a sec:authorize="hasAuthority('ADMIN')"  href="/orderitemlist" class="btn btn-primary">Orders</a> 
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-primary">Users</a>
 </body>
 </html>

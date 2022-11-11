@@ -29,12 +29,28 @@ public class OrderItemController {
 	@Autowired
 	private UserRepository urepository; 
 	
+	// Show all orders
 	@RequestMapping(value="/orderitemlist")
     public String productList(Model model) {	
         model.addAttribute("orderitems", oirepository.findAll());
         return "orderitemlist";
     }
 	
+	@RequestMapping(value="/userorders", method = RequestMethod.GET)
+
+	public String findUserOrders(Model model, Principal principal) {
+
+	      String username = principal.getName(); //get logged in username
+
+	       User user = urepository.findByUsername(username);
+
+	       model.addAttribute("orderitems", oirepository.findByUser(user));
+
+	      return "userorderlist";
+
+	}
+	
+	// Add order
 	@RequestMapping(value = "/addorderitem")
     public String addProduct(Model model){
     	model.addAttribute("orderitem", new OrderItem());
@@ -43,6 +59,7 @@ public class OrderItemController {
         return "addorderitem";
     } 
 	
+	// Save order
 	@RequestMapping(value = "/saveorderitem", method = RequestMethod.POST)
     public String save(@Valid OrderItem orderitem, BindingResult result, Model model, Principal principal){
 		if (result.hasErrors()) {

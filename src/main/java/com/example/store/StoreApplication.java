@@ -47,6 +47,8 @@ public class StoreApplication {
 			urepository.save(user2);
 			OrderItem orderItem1 = new OrderItem(2, fdate.parse("01.10.2022"), product1, user1);
 			oirepository.save(orderItem1);
+			OrderItem orderItem2 = new OrderItem(2, fdate.parse("01.10.2022"), product2, user2);
+			oirepository.save(orderItem2);
 			log.info("fetch all products");
 			for (Product product : repository.findAll()) {
 				log.info(product.toString());

@@ -35,10 +35,11 @@
  			<td  sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-danger">Edit</a></td>
     	</tr>
      </table>
-	 <a   sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add Product</a>
-	 <a href="/addorderitem" class="btn btn-success">Order</a>
-	 <a href="/categorylist" class="btn btn-success">Categories</a>
-	 <a sec:authorize="hasAuthority('ADMIN')" href="/orderitemlist" class="btn btn-success">All orders</a>
-	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
+     <a sec:authorize="hasAuthority('USER')"  href="/addorderitem" class="btn btn-success">Order</a>
+     <a sec:authorize="hasAuthority('USER')"  href="/userorders" class="btn btn-primary">My orders</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add Product</a>
+	 <a href="/categorylist" class="btn btn-primary">Categories</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/orderitemlist" class="btn btn-primary">All orders</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-primary">Users</a>
 </body>
 </html>

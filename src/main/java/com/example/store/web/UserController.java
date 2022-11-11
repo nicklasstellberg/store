@@ -27,6 +27,7 @@ public class UserController {
         return "userlist";
     }
 	
+	// add sign up form
 	@RequestMapping(value = "/signup")
     public String addUser(Model model){
     	model.addAttribute("signupform", new SignupForm());
