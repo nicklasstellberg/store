@@ -36,18 +36,13 @@ public class OrderItemController {
         return "orderitemlist";
     }
 	
+	// Show user's own orders
 	@RequestMapping(value="/userorders", method = RequestMethod.GET)
-
 	public String findUserOrders(Model model, Principal principal) {
-
-	      String username = principal.getName(); //get logged in username
-
-	       User user = urepository.findByUsername(username);
-
-	       model.addAttribute("orderitems", oirepository.findByUser(user));
-
-	      return "userorderlist";
-
+	    String username = principal.getName(); //get logged in username
+	    User user = urepository.findByUsername(username);
+	    model.addAttribute("orderitems", oirepository.findByUser(user));
+	    return "userorderlist";
 	}
 	
 	// Add order

@@ -29,17 +29,20 @@ public class ProductController {
 	@Autowired
 	private CategoryRepository crepository; 
 	
+	// login
 	@RequestMapping(value="/login")
 	public String login() {
 		return "login";
 	}
 	
+	// list all products
 	@RequestMapping(value="/productlist")
     public String productList(Model model) {	
         model.addAttribute("products", repository.findAll());
         return "productlist";
     }
 	
+	// add product
 	@RequestMapping(value = "/add")
     public String addProduct(Model model){
     	model.addAttribute("product", new Product());
@@ -47,6 +50,7 @@ public class ProductController {
         return "addproduct";
     } 
 	
+	// save prodcut
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@Valid Product product, BindingResult result, Model model){
 		if (result.hasErrors()) {
@@ -58,12 +62,14 @@ public class ProductController {
         return "redirect:productlist";
     }  
 	
+	// delete product
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteProduct(@PathVariable("id") Long productId, Model model) {
     	repository.deleteById(productId);
         return "redirect:../productlist";
     }   
 	
+	// edit product
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editProduct(@PathVariable("id") Long productId, Model model) {
 		model.addAttribute("categories", crepository.findAll());
@@ -71,27 +77,30 @@ public class ProductController {
         return "editproduct";
     }
 	
+	// save edited product
 	@RequestMapping(value = "/saveedit", method = RequestMethod.POST)
     public String saveEdit(@Valid Product product, BindingResult result, Model model){
 		if (result.hasErrors()) {
 			model.addAttribute("categories", crepository.findAll());
             return "editproduct";
         }
-		// pitää tutkia product id ja ohjata joko lisää lomakkeele tai muokkauslomakkeelle
         repository.save(product);
         return "redirect:productlist";
     }  
 	
+	//
 	@RequestMapping(value="/products", method = RequestMethod.GET)
     public @ResponseBody List<Product> productListRest() {	
         return (List<Product>) repository.findAll();
     }  
 	
+	//
 	@RequestMapping(value="/products/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Product> findProductRest(@PathVariable("id") Long productId) {	
     	return repository.findById(productId);
     } 
 	
+	//
 	@RequestMapping(value="/products", method = RequestMethod.POST)
     public @ResponseBody Product saveProductRest(@RequestBody Product product) {	
     	return repository.save(product);

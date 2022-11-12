@@ -37,8 +37,8 @@
     		<td th:text="${orderitem.startDay}">Date</td>
     	</tr>
      </table>
-     <a href="/productlist" class="btn btn-success">Products</a>
-	 <a href="/categorylist" class="btn btn-success">Categories</a>
-	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-success">Users</a>
+     <a href="/productlist" class="btn btn-primary">Products</a>
+	 <a href="/categorylist" class="btn btn-primary">Categories</a>
+	 <a sec:authorize="hasAuthority('ADMIN')" href="/userlist" class="btn btn-primary">Users</a>
 </body>
 </html>
