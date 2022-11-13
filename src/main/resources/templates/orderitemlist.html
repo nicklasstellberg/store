@@ -25,7 +25,8 @@
 		    <th>Unit price</th>
 		    <th>Quantity</th>
 		    <th>Total price</th>
-		     <th>Date of order</th>
+		    <th>Date of order</th>
+		    <th></th>
 		</tr>  
     	<tr th:each = "orderitem : ${orderitems}">
     		<td th:text="${orderitem.orderItemId} ">Order id</td>
@@ -35,6 +36,7 @@
     		<td th:text="${orderitem.quantity} ">Quantity</td>
     		<td th:text="${orderitem.quantity*orderitem.product.price} ">Total price</td>
     		<td th:text="${orderitem.startDay}">Date</td>
+    		<td><a th:href="@{/orderdetails/{id}(id=${orderitem.orderItemId})}" class="btn btn-primary">Details</a></td>
     	</tr>
      </table>
      <a href="/productlist" class="btn btn-primary">Products</a>

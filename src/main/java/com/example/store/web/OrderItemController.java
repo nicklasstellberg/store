@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,6 +45,13 @@ public class OrderItemController {
 	    model.addAttribute("orderitems", oirepository.findByUser(user));
 	    return "userorderlist";
 	}
+	
+	// Show order details
+	@RequestMapping(value = "/orderdetails/{id}", method = RequestMethod.GET)
+    public String editProduct(@PathVariable("id") Long orderItemId, Model model) {
+		model.addAttribute("orderitems", oirepository.findById(orderItemId));
+        return "orderdetails";
+    }
 	
 	// Add order
 	@RequestMapping(value = "/addorderitem")

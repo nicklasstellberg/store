@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Order details</h1>
+	<div>
+		<form th:object="${orderitems}">
+			<label for="orderItemId">Order id</label>
+			<input type="text" id="orderItemId" th:field="*{orderItemId}" readonly />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="quantity">Quantity</label>
+			<input type="text" id="quantity" th:field="*{quantity}" readonly />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="startDay">Date of order</label>
+			<input type="text" id="startDay" th:field="*{startDay}" readonly />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="name">Product</label>
+			<input type="text" id="name" th:field="*{product.name}" readonly />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="price">Unit price</label>
+			<input type="text" id="price" th:field="*{product.price}" readonly />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="username">User</label>
+			<input type="text" id="username" th:field="*{user.username}" readonly />
+			
+		</form>
+	</div>
+</body>
+</html>

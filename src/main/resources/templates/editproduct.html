@@ -10,7 +10,7 @@
 	<div>
 		<form th:object="${product}" th:action="@{/saveedit}" action="#" method="post">
 			<input type="hidden" id="id" th:field="*{id}" />
-		  	<label for="name">Namer</label>
+		  	<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</td>
 			<div style="clear: both; display: block; height: 10px;"></div>
